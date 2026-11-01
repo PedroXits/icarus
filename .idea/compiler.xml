@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="icarus.api" options="-parameters" />
+      <module name="icarus.api" options="" />
     </option>
   </component>
 </project>
