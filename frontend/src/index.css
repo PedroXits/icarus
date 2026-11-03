@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Amethysta&family=Besley:wght@400;500;600;700&display=swap');
+
 /* configurações globais */
 :root {
+  font-family: "Amethysta", serif;
   color: #3D0106;
   background-color: #FAF5EF;
   text-rendering: optimizeLegibility;

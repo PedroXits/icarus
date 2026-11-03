@@ -1,0 +1,221 @@
+/* estrutura principal */
+.login-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background-color: #FAF5EF;
+  color: #3D0106;
+  font-family: "Amethysta", serif;
+}
+
+/* lado esquerdo - logo  */
+.login-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 100%;
+  padding: 40px;
+  position: relative;
+}
+
+.login-brand::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 12.5%;
+    width: 1px;
+    height: 75%;
+    background-color: #C8974B;
+}
+
+.login-logo {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* decoração lado esquerdo */
+.login-brand {
+  position: relative;
+  overflow: hidden;
+}
+
+/* linhas decorativas no fundo */
+.login-brand::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../../assets/images/decoracao-login.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* mantém a logo acima da decoração */
+.login-logo {
+  position: relative;
+  z-index: 1;
+}
+
+/* lado direito - formulário */
+.login-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 100%;
+  padding: 40px;
+}
+
+.login-form-container {
+  width: 100%;
+  max-width: 620px;
+}
+
+/* título e descrição */
+.login-form-container h1 {
+  margin: 0 0 20px;
+  font-family: "Besley", serif;
+  color: #3D0106;
+  font-size: clamp(32px, 3vw, 52px);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.login-description {
+  margin: 0 0 36px;
+  color: #73716F;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+/* campos do login */
+.login-input-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  height: 72px;
+  padding: 0 24px;
+  margin-bottom: 30px;
+  border: 1.5px solid #C8974B;
+  border-radius: 12px;
+  color: #B58136;
+  transition: border-color 0.2s ease;
+}
+
+.login-input-group:focus-within {
+  border-color: #3D0106;
+}
+
+.login-input-group > svg {
+  flex-shrink: 0;
+}
+
+.login-input-group input {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #3D0106;
+  font-family: inherit;
+  font-size: 20px;
+}
+
+.login-input-group input::placeholder {
+  color: #77716C;
+  opacity: 1;
+}
+
+/* botão mostrar senha */
+.password-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  color: #77716C;
+  cursor: pointer;
+}
+
+.password-toggle:hover {
+  color: #3d0106;
+}
+
+/* opções de login */
+.login-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 8px 0 48px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #171310;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.remember-me input {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: #C8974B;
+  cursor: pointer;
+}
+
+.forgot-password {
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #3D0106;
+  font-family: inherit;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* botão entrar */
+.login-button {
+  width: 100%;
+  height: 76px;
+  border: none;
+  border-radius: 50px;
+  background-color: #BD8b48;
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 24px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.login-button:hover {
+  background-color: #A87535;
+
+  transform: translateY(-2px);
+}
+
+.login-button:active {
+  transform: translateY(0);
+}
