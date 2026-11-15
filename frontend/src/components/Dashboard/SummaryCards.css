@@ -1,0 +1,53 @@
+/* organização dos 4 cards */
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    width: 100%;
+}
+
+/* estrutura de cada card */
+.summary-card {
+    position: relative;
+    overflow: hidden;
+    min-width: 0;
+    min-height: 127px;
+    padding: 19px 22px;
+    border: 1.5px solid #E6D6C7;
+    border-radius: 16px;
+    background-color: rgba(255, 252, 247, 0.55);
+}
+
+/* ícone e título */
+.summary-card-header {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    position: relative;
+    z-index: 1;
+}
+
+.summary-card-icon {
+    flex-shrink: 0;
+    color: #965B1B;
+}
+
+/* nome do indicador */
+.summary-card-title {
+    color: #241512;
+    font-family: "Amethysta", serif;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.summary-card-value {
+    display: block;
+    margin: 9px 0 0 55px;
+    color: #3D0106;
+    font-family: "Besley", serif;
+    font-size: clamp(21px, 2vw, 31px);
+    font-weight: 600;
+    white-space: nowrap;
+    position: relative;
+    z-index: 1;
+}
