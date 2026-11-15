@@ -51,3 +51,13 @@
     position: relative;
     z-index: 1;
 }
+
+/* ícone decorativo de fundo */
+.summary-card-decoration {
+    position: absolute;
+    right: 9px;
+    bottom: -4px;
+    color: #C8974B;
+    opacity: 0.11;
+    pointer-events: none;
+}

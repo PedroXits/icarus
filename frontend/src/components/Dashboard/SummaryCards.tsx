@@ -54,6 +54,14 @@ export default function SummaryCards() {
                         <strong className="summary-card-value">
                             {item.value}
                         </strong>
+
+                        {/* ícone decorativo de fundo */}
+                        <Icon
+                            className="summary-card-decoration"
+                            size={75}
+                            strokeWidth={2}
+                            aria-hidden="true"
+                        />
                     </div>
                 );
 
