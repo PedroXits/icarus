@@ -1,0 +1,82 @@
+/* menu lateral */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 280px;
+    width: 280px;
+    height: 100vh;
+    padding: 22px 14px 24px;
+    background: linear-gradient(180deg,#3D0106 0%,#350006 100%);
+    color: #FAF5EF;
+    position: relative;
+    overflow: hidden;
+}
+
+/* área da logo */
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 22px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #C8974B;
+}
+
+.sidebar-logo {
+    display: block;
+    width: 205px;
+    height: 135px;
+    object-fit: contain;
+}
+
+/* organização dos itens do menu */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* links do menu */
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    font-size: 19px;
+    color: #FAF5EF;
+    gap: 17px;
+    width: 100%;
+    min-height: 66px;
+    padding: 12px 23px;
+    border-radius: 13px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.sidebar-link:hover {
+    background-color: rgba(250, 245, 239, 0.12);
+}
+
+.sidebar-link.active {
+    background-color: rgba(250, 245, 239, 0.20);
+}
+
+/* botão de sair */
+.sidebar-logout {
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+    font-size: 19px;
+    color: #FAF5EF;
+    gap: 17px;
+    width: 100%;
+    min-height: 55px;
+    padding: 10px 23px;
+    margin-top: auto;
+    border: none;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+}
+
+.sidebar-logout:hover {
+    color: #C8974B;
+}

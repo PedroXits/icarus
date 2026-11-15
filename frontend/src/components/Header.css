@@ -1,0 +1,100 @@
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+    padding: 25px 34px 22px;
+}
+
+/* título */
+.header-title h1 {
+    margin: 0;
+    color: #3D0106;
+    font-family: "Besley", serif;
+    font-size: clamp(30px, 3vw, 43px);
+    font-weight: 600;
+}
+
+.header-title p {
+    margin: 4px 0 0;
+    font-size: 18px;
+    color: #73716F;
+}
+
+/* ícones e perfil */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* notificações */
+.header-notifications {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    border: 1px solid #E4D3C2;
+    border-radius: 12px;
+    color: #7A410E;
+    position: relative;
+}
+
+.notification-dot {
+    position: absolute;
+    top: 5px;
+    right: 4px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background-color: #3D0106;
+}
+
+/* divisor */
+.header-divider {
+    width: 1px;
+    height: 52px;
+    background-color: #D8C8B8;
+}
+
+/* perfil */
+.header-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #3D0106;
+}
+
+/* avatar */
+.profile-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-family: "Besley", serif;
+    font-size: 17px;
+    background-color: #3D0106;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+}
+
+/* nome e cargo */
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.profile-info strong {
+    font-family: "Besley", serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.profile-info span {
+    color: #73716F;
+    font-size: 15px;
+}

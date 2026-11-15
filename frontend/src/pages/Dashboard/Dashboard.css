@@ -1,0 +1,23 @@
+/* layout geral */
+.dashboard-layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #FAF5EF;
+}
+
+/* conteúdo ao lado do menu */
+.dashboard-main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/* espaçamento */
+.dashboard-content {
+    width: 100%;
+    padding: 8px 34px 35px;
+}
