@@ -1,0 +1,120 @@
+/* painel que contém o gráfico */
+.cases-chart-card {
+    width: 48%;
+    min-width: 0;
+    min-height: 290px;
+    padding: 20px 22px;
+    border: 1.5px solid #E6D6C7;
+    border-radius: 16px;
+    background-color: rgba(255, 252, 247, 0.55);
+}
+
+/* título do painel */
+.cases-chart-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    color: #3D0106;
+    font-family: "Besley", serif;
+    font-size: 21px;
+    font-weight: 600;
+}
+
+/* gráfico e legenda */
+.cases-chart-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 18px;
+    padding: 27px 8px 5px;
+}
+
+/* gráfico circular */
+.cases-chart-donut {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 clamp(140px, 16vw, 200px);
+    width: clamp(140px, 16vw, 200px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: conic-gradient(
+        #3D0106 0% 50%,
+        #D9A653 50% 80%,
+        #F0DEC7 80% 100%
+    );
+    position: relative;
+}
+
+/* centro vazado do gráfico */
+.cases-chart-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    inset: 17.5%;
+    border-radius: 50%;
+    background-color: #FAF5EF;
+    color: #3D0106;
+}
+
+/* número central */
+.cases-chart-center strong {
+    font-family: "Besley", serif;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.cases-chart-center span {
+    font-family: "Amethysta", serif;
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+/* legenda */
+.cases-chart-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* cada item da legenda */
+.cases-chart-legend li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* círculos coloridos da legenda */
+.cases-chart-dot {
+  display: block;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+}
+
+.cases-chart-dot.in-progress {
+    background-color: #3D0106;
+}
+
+.cases-chart-dot.waiting {
+    background-color: #D9A653;
+}
+
+.cases-chart-dot.completed {
+    background-color: #F0DEC7;
+}
+
+/* texto da legenda */
+.cases-chart-label {
+  color: #241512;
+  font-family: "Amethysta", serif;
+  font-size: 17px;
+  white-space: nowrap;
+}

@@ -1,6 +1,7 @@
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import SummaryCards from "../../components/Dashboard/SummaryCards";
+import CasesChart from "../../components/Dashboard/CasesChart";
 
 import "./Dashboard.css";
 
@@ -25,6 +26,9 @@ export default function Dashboard() {
                 <section className="dashboard-content">
                     {/* cards indicadores */}
                     <SummaryCards />
+
+                    {/* gráfico de casos por status */}
+                    <CasesChart />
                 </section>
 
             </main>
