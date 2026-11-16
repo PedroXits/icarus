@@ -24,3 +24,12 @@
     width: 100%;
     padding: 8px 34px 35px;
 }
+
+/* painel do gráfico um pouco menor que o de audiências */
+.dashboard-middle-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.0fr) minmax(0, 1.05fr);
+    gap: 22px;
+    width: 100%;
+    align-items: stretch;
+}

@@ -2,6 +2,7 @@ import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import SummaryCards from "../../components/Dashboard/SummaryCards";
 import CasesChart from "../../components/Dashboard/CasesChart";
+import UpcomingHearings from "../../components/Dashboard/UpcomingHearings";
 
 import "./Dashboard.css";
 
@@ -24,11 +25,15 @@ export default function Dashboard() {
                 />
 
                 <section className="dashboard-content">
-                    {/* cards indicadores */}
+                    {/* cards de resumo */}
                     <SummaryCards />
 
-                    {/* gráfico de casos por status */}
-                    <CasesChart />
+                    {/* gráfico de casos por status e próximas audiências */}
+                    <div className="dashboard-middle-row">
+                        <CasesChart />
+                        <UpcomingHearings />
+                    </div>
+                    
                 </section>
 
             </main>

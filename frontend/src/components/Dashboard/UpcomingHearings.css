@@ -1,0 +1,109 @@
+/* painel próximas audiências */
+.upcoming-hearings-card {
+    width: 100%;
+    min-width: 0;
+    min-height: 320px;
+    padding: 20px 22px;
+    border: 1.5px solid #E6D6C7;
+    border-radius: 16px;
+    background-color: rgba(255, 252, 247, 0.55);
+}
+
+/* cabeçalho do painel */
+.upcoming-hearings-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    padding-bottom: 13px;
+    border-bottom: 1px solid #E9DCCE;
+}
+
+/* título e ícone */
+.upcoming-hearings-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    color: #3D0106;
+    font-family: "Besley", serif;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* texto Ver agora */
+.view-agenda {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #7A410E;
+    font-family: "Amethysta", serif;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* lista das audiências */
+.hearings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-top: 14px;
+}
+
+/* cada audiência */
+.hearing-item {
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr);
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+}
+
+/* bloco da data */
+.hearing-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 64px;
+    border-radius: 13px;
+    background-color: #F4E8DA;
+    color: #3D0106;
+}
+
+/* número do dia */
+.hearing-date strong {
+    font-family: "Besley", serif;
+    font-size: 23px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+/* mês */
+.hearing-date span {
+    font-family: "Amethysta", serif;
+    font-size: 14px;
+}
+
+/* informações da audiência */
+.hearing-details {
+    min-width: 0;
+}
+
+/* nome e número do processo */
+.hearing-title {
+    margin: 0;
+    color: #241512;
+    font-family: "Amethysta", serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* horário e local */
+.hearing-info {
+    margin: 4px 0 0;
+    color: #73716F;
+    font-family: "Amethysta", serif;
+    font-size: 14px;
+}
