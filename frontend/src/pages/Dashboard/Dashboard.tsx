@@ -3,6 +3,7 @@ import Header from "../../components/Header";
 import SummaryCards from "../../components/Dashboard/SummaryCards";
 import CasesChart from "../../components/Dashboard/CasesChart";
 import UpcomingHearings from "../../components/Dashboard/UpcomingHearings";
+import RecentActivities from "../../components/Dashboard/RecentActivities";
 
 import "./Dashboard.css";
 
@@ -25,6 +26,7 @@ export default function Dashboard() {
                 />
 
                 <section className="dashboard-content">
+
                     {/* cards de resumo */}
                     <SummaryCards />
 
@@ -32,6 +34,11 @@ export default function Dashboard() {
                     <div className="dashboard-middle-row">
                         <CasesChart />
                         <UpcomingHearings />
+                    </div>
+
+                    {/* atividades recentes */}
+                    <div className="dashboard-bottom-row">
+                        <RecentActivities />
                     </div>
                     
                 </section>
