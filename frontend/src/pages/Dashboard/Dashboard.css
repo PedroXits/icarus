@@ -25,8 +25,9 @@
     padding: 8px 34px 35px;
 }
 
-/* painel do gráfico um pouco menor que o de audiências */
-.dashboard-middle-row {
+/* organiza painéis em duas colunas um do lado do outro */
+.dashboard-middle-row,
+.dashboard-bottom-row {
     display: grid;
     grid-template-columns: minmax(0, 1.0fr) minmax(0, 1.05fr);
     gap: 22px;

@@ -4,6 +4,7 @@ import SummaryCards from "../../components/Dashboard/SummaryCards";
 import CasesChart from "../../components/Dashboard/CasesChart";
 import UpcomingHearings from "../../components/Dashboard/UpcomingHearings";
 import RecentActivities from "../../components/Dashboard/RecentActivities";
+import FinancialSummary from "../../components/Dashboard/FinancialSummary";
 
 import "./Dashboard.css";
 
@@ -36,9 +37,10 @@ export default function Dashboard() {
                         <UpcomingHearings />
                     </div>
 
-                    {/* atividades recentes */}
+                    {/* atividades recentes e resumo financeiro */}
                     <div className="dashboard-bottom-row">
                         <RecentActivities />
+                        <FinancialSummary />
                     </div>
                     
                 </section>

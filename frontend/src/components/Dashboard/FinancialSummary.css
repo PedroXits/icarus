@@ -1,0 +1,99 @@
+/* painel de resumo financeiro */
+.financial-summary-card {
+    width: 100%;
+    min-width: 0;
+    min-height: 228px;
+    padding: 18px 22px;
+    border: 1.5px solid #E6D6C7;
+    border-radius: 16px;
+    background-color: rgba(255, 252, 247, 0.55);
+}
+
+/* cabeçalho do painel */
+.financial-summary-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #E9DCCE;
+}
+
+/* título e ícone */
+.financial-summary-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    color: #3D0106;
+    font-family: "Besley", serif;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* período exibido no cabeçalho "este mês" */
+.financial-period {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #7A410E;
+    font-family: "Amethysta", serif;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* espaço das três informações financeiras */
+.financial-summary-content {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding-top: 20px;
+}
+
+/* cada coluna financeira */
+.financial-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    min-width: 0;
+    min-height: 112px;
+    padding: 8px 10px;
+    border-right: 1px solid #E6D6C7;
+}
+
+.financial-item:last-child {
+    border-right: none;
+}
+
+/* nome e ícone do indicador */
+.financial-item-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    color: #241512;
+    font-family: "Amethysta", serif;
+    font-size: 15px;
+}
+
+.financial-item-title .income {
+    color: #229447;
+}
+
+.financial-item-title .expense {
+    color: #D92D2D;
+}
+
+.financial-item-title .balance {
+    color: #7A410E;
+}
+
+/* valores financeiros */
+.financial-item-value {
+    color: #3D0106;
+    font-family: "Besley", serif;
+    font-size: clamp(15px, 1.5vw, 21px);
+    font-weight: 600;
+    white-space: nowrap;
+}
