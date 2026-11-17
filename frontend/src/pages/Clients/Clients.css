@@ -1,0 +1,26 @@
+/* layout geral */
+.clients-layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #FAF5EF;
+}
+
+/* conteúdo ao lado do menu */
+.clients-main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/* espaçamento */
+.clients-content {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    width: 100%;
+    padding: 8px 34px 35px;
+}
