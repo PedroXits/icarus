@@ -31,15 +31,79 @@
     font-weight: 600;
 }
 
-/* período exibido no cabeçalho "este mês" */
+/* área filtro */
+.financial-period-wrapper {
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* botão do período selecionado */
 .financial-period {
     display: flex;
     align-items: center;
     gap: 7px;
+    padding: 7px 10px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: transparent;
     color: #7A410E;
     font-family: "Amethysta", serif;
     font-size: 14px;
     white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.financial-period:hover {
+    background-color: #F4E8DA;
+}
+
+/* rotação da seta quando o menu está aberto */
+.period-arrow-open {
+    transform: rotate(180deg);
+}
+
+/* menu com as opções de período */
+.financial-period-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 20;
+    width: 185px;
+    padding: 6px;
+    border: 1px solid #E6D6C7;
+    border-radius: 10px;
+    background-color: #FFFCF7;
+    box-shadow: 0 6px 20px rgba(61, 1, 6, 0.12);
+}
+
+/* cada opção do menu */
+.financial-period-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: #241512;
+    font-family: "Amethysta", serif;
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.financial-period-option:hover {
+    background-color: #F4E8DA;
+}
+
+/* opção selecionada */
+.financial-period-option.selected {
+    color: #3D0106;
+    font-weight: 600;
 }
 
 /* espaço das três informações financeiras */
