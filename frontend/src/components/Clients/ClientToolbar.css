@@ -1,0 +1,163 @@
+.client-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+
+/* campo de pesquisa */
+.client-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    height: 48px;
+}
+
+/* ícone de pesquisa */
+.client-search-icon {
+    position: absolute;
+    left: 16px;
+    color: #965B1B;
+    pointer-events: none;
+}
+
+/* input */
+.client-search input {
+    width: 100%;
+    height: 100%;
+    padding: 0 16px 0 46px;
+    border: 1.5px solid #E6D6C7;
+    border-radius: 12px;
+    outline: none;
+    background-color: rgba(255, 252, 247, 0.75);
+    color: #241512;
+    font-family: "Amethysta", serif;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.client-search input::placeholder {
+    color: #99908C;
+}
+
+.client-search input:focus {
+    border-color: #C8974B;
+}
+
+/* filtro */
+.client-status-filter {
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* botão do filtro selecionado */
+.client-status-filter-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 185px;
+    min-height: 48px;
+    padding: 7px 10px;
+    border: 1.5px solid #E6D6C7;
+    border-radius: 12px;
+    background-color: rgba(255, 252, 247, 0.75);
+    color: #7A410E;
+    font-family: "Amethysta", serif;
+    font-size: 14px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.client-status-filter-button:hover {
+    background-color: #F4E8DA;
+    border-color: #DCC8B5;
+}
+
+/* seta do filtro */
+.client-filter-arrow {
+    margin-left: auto;
+    transition: transform 0.2s ease;
+}
+
+.filter-arrow-open {
+    transform: rotate(180deg);
+}
+
+/* caixinha com opções de situação */
+.client-status-filter-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    z-index: 20;
+    width: 185px;
+    padding: 6px;
+    border: 1px solid #E6D6C7;
+    border-radius: 10px;
+    background-color: #FFFCF7;
+    box-shadow: 0 6px 20px rgba(61, 1, 6, 0.12);
+}
+
+/* cada opção do menu */
+.client-status-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: #241512;
+    font-family: "Amethysta", serif;
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.client-status-option:hover {
+    background-color: #F4E8DA;
+}
+
+/* opção selecionada */
+.client-status-option.selected {
+    color: #3D0106;
+    font-weight: 600;
+}
+
+.client-status-option.selected svg {
+    color: #965B1B;
+}
+
+/* botão novo cliente */
+.client-new-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-shrink: 0;
+    height: 48px;
+    width: 205px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 12px;
+    background-color: #5A151B;
+    color: #FAF5EF;
+    font-family: "Amethysta", serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.client-new-button:hover {
+    background-color: #6B1C23;
+}
+
+.client-new-button:focus-visible {
+    outline: 2px solid #C8974B;
+    outline-offset: 3px;
+}

@@ -1,10 +1,19 @@
+import { useState } from "react";
+
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import SummaryCards from "../../components/Clients/SummaryCards";
+import ClientToolbar, { type ClientStatusFilter, } from "../../components/Clients/ClientToolbar";
 
 import "./Clients.css";
 
 export default function Clients() {
+
+    const [searchTerm, setSearchTerm] = useState("");
+
+    const [statusFilter, setStatusFilter] =
+        useState<ClientStatusFilter>("all");
+
     return (
         <div className="clients-layout">
 
@@ -24,6 +33,14 @@ export default function Clients() {
 
                     {/* cards de resumo dos clientes */}
                     <SummaryCards />
+
+                    {/* pesquisa, filtro e cadastro de clientes */}
+                    <ClientToolbar
+                        searchTerm={searchTerm}
+                        onSearchChange={setSearchTerm}
+                        statusFilter={statusFilter}
+                        onStatusFilterChange={setStatusFilter}
+                    />
                 </section>
             </main>
 
