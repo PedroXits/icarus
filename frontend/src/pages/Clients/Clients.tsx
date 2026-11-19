@@ -44,7 +44,9 @@ export default function Clients() {
                     />
 
                     {/* tabela de clientes */}
-                    <ClientTable />
+                    <ClientTable 
+                        searchTerm={searchTerm}
+                    />
                 </section>
             </main>
 

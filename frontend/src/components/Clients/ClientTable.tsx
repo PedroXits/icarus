@@ -78,7 +78,50 @@ const mockClients: Client[] = [
     },
 ];
 
-export default function ClientTable() {
+// propriedades recebidas da página de clientes
+interface ClientTableProps {
+    searchTerm: string;
+}
+
+export default function ClientTable({ searchTerm }: ClientTableProps) {
+
+    // padroniza a pesquisa, removendo espaços extras, maiúsculas e acentos.
+    const normalizedSearch = searchTerm
+        .trim()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+    // permite pesquisar CPF e telefone mesmo sem pontuação.
+    const searchNumbers = searchTerm.replace(/\D/g, "");
+
+    // filtra os clientes pela pesquisa.
+    const filteredClients = mockClients.filter((client) => {
+
+        // padroniza o nome do cliente para facilitar a comparação com a pesquisa.
+        const normalizedName = client.name
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
+
+        const matchesNameOrEmail =
+            normalizedName.includes(normalizedSearch) ||
+            client.email.toLowerCase().includes(normalizedSearch);
+
+        const matchesCpfOrPhone =
+            searchNumbers.length > 0 &&
+            (
+                client.cpf.replace(/\D/g, "").includes(searchNumbers) ||
+                client.phone.replace(/\D/g, "").includes(searchNumbers)
+            );
+
+        return (
+            normalizedSearch.length === 0 ||
+            matchesNameOrEmail ||
+            matchesCpfOrPhone
+        );
+    });
+
     return (
         <section className="client-table-card">
 
@@ -87,8 +130,8 @@ export default function ClientTable() {
                 <h2>Lista de clientes</h2>
 
                 <span>
-                    {mockClients.length}{" "}
-                    {mockClients.length === 1 ? "registro" : "registros"}
+                    {filteredClients.length}{" "}
+                    {filteredClients.length === 1 ? "registro" : "registros"}
                 </span>
             </div>
 
@@ -108,74 +151,82 @@ export default function ClientTable() {
                     </thead>
 
                     <tbody>
-                        {/* percorre os clientes e cria uma linha para cada um */}
-                        {mockClients.map((client) => (
-                            <tr key={client.id}>
+                        {/* percorre os clientes filtrados e cria uma linha para cada um */}
+                        {filteredClients.length > 0 ? (
+                            filteredClients.map((client) => (
+                                <tr key={client.id}>
 
-                                {/* nome e CPF */}
-                                <td>
-                                    <div className="client-name-cell">
-                                        <strong>{client.name}</strong>
-                                        <span>{client.cpf}</span>
-                                    </div>
+                                    {/* nome e CPF */}
+                                    <td>
+                                        <div className="client-name-cell">
+                                            <strong>{client.name}</strong>
+                                            <span>{client.cpf}</span>
+                                        </div>
+                                    </td>
+
+                                    {/* telefone e e-mail */}
+                                    <td>
+                                        <div className="client-contact-cell">
+                                            <span>{client.phone}</span>
+                                            <span>{client.email}</span>
+                                        </div>
+                                    </td>
+
+                                    {/* quantidade de processos */}
+                                    <td>
+                                        {client.processCount}{" "}
+                                        {client.processCount === 1
+                                            ? "processo"
+                                            : "processos"}
+                                    </td>
+
+                                    {/* situação do cliente */}
+                                    <td>
+                                        <span className={`client-status-badge ${client.status}`}>
+                                            {client.status === "active"
+                                                ? "Ativo"
+                                                : "Inativo"}
+                                        </span>
+                                    </td>
+
+                                    {/* data de cadastro */}
+                                    <td>{client.registeredAt}</td>
+
+                                    {/* ações */}
+                                    <td>
+                                        <div className="client-actions">
+                                            <button
+                                                type="button"
+                                                title="Visualizar cliente"
+                                            >
+                                                <Eye size={17} />
+                                            </button>
+
+                                            <button
+                                                type="button"
+                                                title="Editar cliente"
+                                            >
+                                                <Pencil size={17} />
+                                            </button>
+
+                                            <button
+                                                type="button"
+                                                title="Excluir cliente"
+                                            >
+                                                <Trash2 size={17} />
+                                            </button>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan={6} className="client-empty-state">
+                                    Nenhum cliente encontrado.
                                 </td>
-
-                                {/* telefone e e-mail */}
-                                <td>
-                                    <div className="client-contact-cell">
-                                        <span>{client.phone}</span>
-                                        <span>{client.email}</span>
-                                    </div>
-                                </td>
-
-                                {/* quantidade de processos */}
-                                <td>
-                                    {client.processCount}{" "}
-                                    {client.processCount === 1
-                                        ? "processo"
-                                        : "processos"}
-                                </td>
-
-                                {/* situação do cliente */}
-                                <td>
-                                    <span className={`client-status-badge ${client.status}`}>
-                                        {client.status === "active"
-                                            ? "Ativo"
-                                            : "Inativo"}
-                                    </span>
-                                </td>
-
-                                {/* data de cadastro */}
-                                <td>{client.registeredAt}</td>
-
-                                {/* ações */}
-                                <td>
-                                    <div className="client-actions">
-                                        <button
-                                            type="button"
-                                            title="Visualizar cliente"
-                                        >
-                                            <Eye size={17} />
-                                        </button>
-
-                                        <button
-                                            type="button"
-                                            title="Editar cliente"
-                                        >
-                                            <Pencil size={17} />
-                                        </button>
-
-                                        <button
-                                            type="button"
-                                            title="Excluir cliente"
-                                        >
-                                            <Trash2 size={17} />
-                                        </button>
-                                    </div>
-                                </td>
-
                             </tr>
-                        ))}
+                        )}
                     </tbody>
 
                 </table>

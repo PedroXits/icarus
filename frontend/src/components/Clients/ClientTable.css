@@ -171,3 +171,11 @@
 .client-actions button:last-child {
     color: #A4433C;
 }
+
+/* mensagem quando a pesquisa não encontra resultados */
+.client-empty-state {
+    height: 110px;
+    color: #8C817B !important;
+    text-align: center;
+    font-size: 13px !important;
+}
