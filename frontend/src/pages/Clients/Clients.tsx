@@ -4,6 +4,7 @@ import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import SummaryCards from "../../components/Clients/SummaryCards";
 import ClientToolbar, { type ClientStatusFilter, } from "../../components/Clients/ClientToolbar";
+import ClientTable from "../../components/Clients/ClientTable";
 
 import "./Clients.css";
 
@@ -41,6 +42,9 @@ export default function Clients() {
                         statusFilter={statusFilter}
                         onStatusFilterChange={setStatusFilter}
                     />
+
+                    {/* tabela de clientes */}
+                    <ClientTable />
                 </section>
             </main>
 

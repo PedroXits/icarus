@@ -1,0 +1,173 @@
+/* painel da tabela */
+.client-table-card {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    padding: 16px 22px;
+    overflow: hidden;
+    border: 1.5px solid #E6D6C7;
+    border-radius: 16px;
+    background-color: rgba(255, 252, 247, 0.55);
+}
+
+/* cabeçalho do painel */
+.client-table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 17px;
+    border-bottom: 1px solid #E9DCCE;
+}
+
+.client-table-header h2 {
+    margin: 0;
+    color: #3D0106;
+    font-family: "Besley", serif;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+/* quantidade de registros */
+.client-table-header span {
+    padding: 6px 11px;
+    border-radius: 20px;
+    background-color: #F4E8DA;
+    color: #7A410E;
+    font-family: "Amethysta", serif;
+    font-size: 12px;
+}
+
+/* área da tabela */
+.client-table-wrapper {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+/* estrutura da tabela */
+.client-table {
+    width: 100%;
+    min-width: 950px;
+    margin-top: 12px;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: left;
+}
+
+/* cabeçalho das colunas (cliente, contato etc) */
+.client-table thead th {
+    padding: 14px 12px;
+    background-color: #F4E8DA;
+    color: #3D0106;
+    font-family: "Besley", serif;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.client-table thead th:first-child {
+    border-radius: 9px 0 0 9px;
+    padding-left: 16px;
+}
+
+.client-table thead th:last-child {
+    border-radius: 0 9px 9px 0;
+    text-align: center;
+}
+
+/* espaço entre cada cliente */
+.client-table tbody td {
+    padding: 13px 12px;
+    border-bottom: 1px solid #EEE5DC;
+    color: #241512;
+    font-family: "Amethysta", serif;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.client-table tbody td:first-child {
+    padding-left: 16px;
+}
+
+/* nome e CPF */
+.client-name-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.client-name-cell strong {
+    color: #3D0106;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.client-name-cell span {
+    color: #948780;
+    font-size: 10px;
+}
+
+/* telefone e e-mail */
+.client-contact-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.client-contact-cell span {
+    color: #5F514B;
+    font-size: 11px;
+}
+
+/* situação ativo ou inativo */
+.client-status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 66px;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.client-status-badge.active {
+    background-color: #E5F0E2;
+    color: #347A43;
+}
+
+.client-status-badge.inactive {
+    background-color: #F6E6E3;
+    color: #A4433C;
+}
+
+/* ações */
+.client-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.client-actions button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 31px;
+    height: 31px;
+    padding: 0;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: #7A2D1C;
+    cursor: default;
+}
+
+.client-actions button:last-child {
+    color: #A4433C;
+}
