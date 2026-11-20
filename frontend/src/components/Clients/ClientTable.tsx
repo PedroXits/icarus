@@ -4,6 +4,7 @@ import { Eye, Pencil, Trash2, ChevronLeft, ChevronRight, Phone, Mail } from "luc
 import type { Client } from "./Client";
 import type { ClientStatusFilter } from "./ClientToolbar";
 import ClientDetailsModal from "./ClientDetailsModal";
+import EditModal from "./EditModal";
 
 import "./ClientTable.css";
 
@@ -113,6 +114,11 @@ export default function ClientTable({
     // guarda o cliente selecionado para visualizar seus detalhes
     const [selectedClient, setSelectedClient] = useState<Client | null>(null);
 
+    const [clients, setClients] = useState<Client[]>(mockClients);
+
+    // guarda o cliente selecionado para edição
+    const [editingClient, setEditingClient] = useState<Client | null>(null);
+
     // padroniza a pesquisa, removendo espaços extras, maiúsculas e acentos.
     const normalizedSearch = searchTerm
         .trim()
@@ -124,7 +130,7 @@ export default function ClientTable({
     const searchNumbers = searchTerm.replace(/\D/g, "");
 
     // filtra os clientes pela pesquisa e pela situação.
-    const filteredClients = mockClients.filter((client) => {
+    const filteredClients = clients.filter((client) => {
 
         const normalizedName = client.name
             .toLowerCase()
@@ -179,6 +185,26 @@ export default function ClientTable({
         currentPage * ITEMS_PER_PAGE,
         filteredClients.length
     );
+
+    // salva as alterações realizadas no cadastro do cliente
+    function handleSaveClient(updatedClient: Client) {
+
+        // atualiza a data da última alteração
+        const clientUpdated = {
+            ...updatedClient,
+            updatedAt: new Date().toLocaleDateString("pt-BR"),
+        };
+
+        // atualiza os dados do cliente na lista
+        setClients((currentClients) =>
+            currentClients.map((client) =>
+                client.id === clientUpdated.id ? clientUpdated : client
+            )
+        );
+
+        setEditingClient(null);
+        setCurrentPage(1);
+    }
 
     return (
         <>
@@ -289,6 +315,7 @@ export default function ClientTable({
                                                     type="button"
                                                     title="Editar cliente"
                                                     aria-label={`Editar ${client.name}`}
+                                                    onClick={() => setEditingClient(client)}
                                                 >
                                                     <Pencil size={18} />
                                                 </button>
@@ -385,6 +412,15 @@ export default function ClientTable({
                 <ClientDetailsModal
                     client={selectedClient}
                     onClose={() => setSelectedClient(null)}
+                />
+            )}
+
+            {/* modal para editar os dados do cliente */}
+            {editingClient && (
+                <EditModal
+                    client={editingClient}
+                    onClose={() => setEditingClient(null)}
+                    onSave={handleSaveClient}
                 />
             )}
             
