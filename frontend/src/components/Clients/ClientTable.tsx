@@ -1,4 +1,5 @@
-import { Eye, Pencil, Trash2 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Eye, Pencil, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
 import type { ClientStatusFilter } from "./ClientToolbar";
 
 import "./ClientTable.css";
@@ -85,10 +86,15 @@ interface ClientTableProps {
     statusFilter: ClientStatusFilter;
 }
 
+// quantidade de clientes exibidos por página
+const ITEMS_PER_PAGE = 5;
+
 export default function ClientTable({
     searchTerm,
     statusFilter,
 }: ClientTableProps) {
+
+    const [currentPage, setCurrentPage] = useState(1);
 
     // padroniza a pesquisa, removendo espaços extras, maiúsculas e acentos.
     const normalizedSearch = searchTerm
@@ -97,12 +103,12 @@ export default function ClientTable({
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "");
 
-    // permite pesquisar CPF e telefone mesmo sem pontuação.
+    // pesquisar CPF e telefone mesmo sem pontuação.
     const searchNumbers = searchTerm.replace(/\D/g, "");
 
     // filtra os clientes pela pesquisa e pela situação.
     const filteredClients = mockClients.filter((client) => {
-        
+
         const normalizedName = client.name
             .toLowerCase()
             .normalize("NFD")
@@ -133,6 +139,30 @@ export default function ClientTable({
         return matchesSearch && matchesStatus;
     });
 
+    // volta para a primeira página quando a pesquisa ou o filtro mudam.
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchTerm, statusFilter]);
+
+    const totalPages = Math.max(
+        1,
+        Math.ceil(filteredClients.length / ITEMS_PER_PAGE)
+    );
+
+    const firstIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+
+    const currentClients = filteredClients.slice(
+        firstIndex,
+        firstIndex + ITEMS_PER_PAGE
+    );
+
+    const firstItem = filteredClients.length === 0 ? 0 : firstIndex + 1;
+
+    const lastItem = Math.min(
+        currentPage * ITEMS_PER_PAGE,
+        filteredClients.length
+    );
+
     return (
         <section className="client-table-card">
 
@@ -162,9 +192,8 @@ export default function ClientTable({
                     </thead>
 
                     <tbody>
-                        {/* percorre os clientes filtrados e cria uma linha para cada um */}
-                        {filteredClients.length > 0 ? (
-                            filteredClients.map((client) => (
+                        {currentClients.length > 0 ? (
+                            currentClients.map((client) => (
                                 <tr key={client.id}>
 
                                     {/* nome e CPF */}
@@ -241,6 +270,67 @@ export default function ClientTable({
                     </tbody>
 
                 </table>
+            </div>
+
+            {/* rodapé e paginação */}
+            <div className="client-table-footer">
+
+                <span className="client-table-showing">
+                    Mostrando {firstItem}–{lastItem} de{" "}
+                    {filteredClients.length} clientes
+                </span>
+
+                {filteredClients.length > 0 && (
+                    <div className="client-pagination">
+
+                        <button
+                            type="button"
+                            className="client-page-arrow"
+                            onClick={() =>
+                                setCurrentPage((page) => Math.max(1, page - 1))
+                            }
+                            disabled={currentPage === 1}
+                            aria-label="Página anterior"
+                        >
+                            <ChevronLeft size={17} />
+                        </button>
+
+                        {/* números das páginas */}
+                        {Array.from(
+                            { length: totalPages },
+                            (_, index) => index + 1
+                        ).map((page) => (
+                            <button
+                                key={page}
+                                type="button"
+                                className={`client-page-number ${
+                                    currentPage === page ? "active" : ""
+                                }`}
+                                onClick={() => setCurrentPage(page)}
+                                aria-current={
+                                    currentPage === page ? "page" : undefined
+                                }
+                            >
+                                {page}
+                            </button>
+                        ))}
+
+                        <button
+                            type="button"
+                            className="client-page-arrow"
+                            onClick={() =>
+                                setCurrentPage((page) =>
+                                    Math.min(totalPages, page + 1)
+                                )
+                            }
+                            disabled={currentPage === totalPages}
+                            aria-label="Próxima página"
+                        >
+                            <ChevronRight size={17} />
+                        </button>
+
+                    </div>
+                )}
             </div>
 
         </section>

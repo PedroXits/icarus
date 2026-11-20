@@ -179,3 +179,65 @@
     text-align: center;
     font-size: 13px !important;
 }
+
+/* rodapé da tabela */
+.client-table-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    gap: 15px;
+    margin-top: auto;
+    padding: 12px 5px 0;
+    border-top: 1px solid #EEE5DC;
+}
+
+/* texto da quantidade de clientes */
+.client-table-showing {
+    color: #756B68;
+    font-family: "Amethysta", serif;
+    font-size: 12px;
+}
+
+/* paginação */
+.client-pagination {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* botões da paginação */
+.client-page-arrow,
+.client-page-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 37px;
+    height: 37px;
+    padding: 0 8px;
+    border: 1px solid #E6D6C7;
+    border-radius: 9px;
+    background-color: rgba(255, 252, 247, 0.75);
+    color: #3D0106;
+    font-family: "Amethysta", serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.client-page-arrow:hover:not(:disabled),
+.client-page-number:hover:not(.active) {
+    background-color: #F4E8DA;
+    border-color: #DCC8B5;
+}
+
+.client-page-number.active {
+    border-color: #3D0106;
+    background-color: #3D0106;
+    color: #FAF5EF;
+}
+
+.client-page-arrow:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
