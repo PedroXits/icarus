@@ -1,20 +1,11 @@
 import { useEffect, useState } from "react";
 import { Eye, Pencil, Trash2, ChevronLeft, ChevronRight, Phone, Mail } from "lucide-react";
+
+import type { Client } from "./Client";
 import type { ClientStatusFilter } from "./ClientToolbar";
+import ClientDetailsModal from "./ClientDetailsModal";
 
 import "./ClientTable.css";
-
-// estrutura dos dados de um cliente
-interface Client {
-    id: number;
-    name: string;
-    cpf: string;
-    phone: string;
-    email: string;
-    processCount: number;
-    status: "active" | "inactive";
-    registeredAt: string;
-}
 
 // mock dos clientes
 const mockClients: Client[] = [
@@ -27,6 +18,8 @@ const mockClients: Client[] = [
         processCount: 3,
         status: "active",
         registeredAt: "02/02/1998",
+        observations: "Prefere receber contatos por telefone.",
+        updatedAt: "12/02/2026"
     },
     {
         id: 2,
@@ -37,6 +30,8 @@ const mockClients: Client[] = [
         processCount: 2,
         status: "active",
         registeredAt: "04/04/1999",
+        observations: "Prefere receber contatos via E-mail.",
+        updatedAt: "16/04/2026"
     },
     {
         id: 3,
@@ -47,6 +42,8 @@ const mockClients: Client[] = [
         processCount: 1,
         status: "inactive",
         registeredAt: "06/06/1996",
+        observations: "Prefere receber contatos por mensagem.",
+        updatedAt: "18/06/2026"
     },
     {
         id: 4,
@@ -57,6 +54,8 @@ const mockClients: Client[] = [
         processCount: 4,
         status: "active",
         registeredAt: "08/08/1994",
+        observations: "Prefere receber contatos por telefone.",
+        updatedAt: "20/08/2026"
     },
     {
         id: 5,
@@ -67,6 +66,8 @@ const mockClients: Client[] = [
         processCount: 0,
         status: "active",
         registeredAt: "10/10/1992",
+        observations: "Prefere receber contatos via E-mail.",
+        updatedAt: "24/10/2026"
     },
     {
         id: 6,
@@ -77,6 +78,8 @@ const mockClients: Client[] = [
         processCount: 2,
         status: "inactive",
         registeredAt: "12/12/1990",
+        observations: "Prefere receber contatos por mensagem.",
+        updatedAt: "26/12/2026"
     },
 ];
 
@@ -106,6 +109,9 @@ export default function ClientTable({
 }: ClientTableProps) {
 
     const [currentPage, setCurrentPage] = useState(1);
+
+    // guarda o cliente selecionado para visualizar seus detalhes
+    const [selectedClient, setSelectedClient] = useState<Client | null>(null);
 
     // padroniza a pesquisa, removendo espaços extras, maiúsculas e acentos.
     const normalizedSearch = searchTerm
@@ -175,201 +181,213 @@ export default function ClientTable({
     );
 
     return (
-        <section className="client-table-card">
+        <>
+            <section className="client-table-card">
 
-            {/* título e quantidade de registros */}
-            <div className="client-table-header">
-                <h2>Lista de clientes</h2>
+                {/* título e quantidade de registros */}
+                <div className="client-table-header">
+                    <h2>Lista de clientes</h2>
 
-                <span>
-                    {filteredClients.length}{" "}
-                    {filteredClients.length === 1 ? "registro" : "registros"}
-                </span>
-            </div>
+                    <span>
+                        {filteredClients.length}{" "}
+                        {filteredClients.length === 1 ? "registro" : "registros"}
+                    </span>
+                </div>
 
-            {/* tabela de clientes */}
-            <div className="client-table-wrapper">
-                <table className="client-table">
+                {/* tabela de clientes */}
+                <div className="client-table-wrapper">
+                    <table className="client-table">
 
-                    <thead>
-                        <tr>
-                            <th>Cliente</th>
-                            <th>Contato</th>
-                            <th>Processos</th>
-                            <th>Situação</th>
-                            <th>Cadastro</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {currentClients.length > 0 ? (
-                            currentClients.map((client) => (
-                                <tr key={client.id}>
-
-                                    {/* iniciais, nome e CPF */}
-                                    <td>
-                                        <div className="client-name-cell">
-                                            <div className="client-avatar">
-                                                {getInitials(client.name)}
-                                            </div>
-
-                                            <div className="client-name-info">
-                                                <strong>{client.name}</strong>
-                                                <span>{client.cpf}</span>
-                                            </div>
-                                        </div>
-                                    </td>
-
-                                    {/* telefone e e-mail */}
-                                    <td>
-                                        <div className="client-contact-cell">
-                                            <div>
-                                                <Phone size={15} />
-                                                <span>{client.phone}</span>
-                                            </div>
-
-                                            <div>
-                                                <Mail size={15} />
-                                                <span>{client.email}</span>
-                                            </div>
-                                        </div>
-                                    </td>
-
-                                    {/* quantidade de processos */}
-                                    <td>
-                                        <span className="client-process-count">
-                                            {client.processCount}{" "}
-                                            {client.processCount === 1
-                                                ? "processo"
-                                                : "processos"}
-                                        </span>
-                                    </td>
-
-                                    {/* situação do cliente */}
-                                    <td>
-                                        <span
-                                            className={`client-status-badge ${client.status}`}
-                                        >
-                                            <span className="client-status-dot" />
-
-                                            {client.status === "active"
-                                                ? "Ativo"
-                                                : "Inativo"}
-                                        </span>
-                                    </td>
-
-                                    {/* data de cadastro */}
-                                    <td>
-                                        <span className="client-register-date">
-                                            {client.registeredAt}
-                                        </span>
-                                    </td>
-
-                                    {/* ações */}
-                                    <td>
-                                        <div className="client-actions">
-                                            <button
-                                                type="button"
-                                                title="Visualizar cliente"
-                                                aria-label={`Visualizar ${client.name}`}
-                                            >
-                                                <Eye size={18} />
-                                            </button>
-
-                                            <button
-                                                type="button"
-                                                title="Editar cliente"
-                                                aria-label={`Editar ${client.name}`}
-                                            >
-                                                <Pencil size={18} />
-                                            </button>
-
-                                            <button
-                                                type="button"
-                                                title="Excluir cliente"
-                                                aria-label={`Excluir ${client.name}`}
-                                            >
-                                                <Trash2 size={18} />
-                                            </button>
-                                        </div>
-                                    </td>
-
-                                </tr>
-                            ))
-                        ) : (
+                        <thead>
                             <tr>
-                                <td colSpan={6} className="client-empty-state">
-                                    Nenhum cliente encontrado.
-                                </td>
+                                <th>Cliente</th>
+                                <th>Contato</th>
+                                <th>Processos</th>
+                                <th>Situação</th>
+                                <th>Cadastro</th>
+                                <th>Ações</th>
                             </tr>
-                        )}
-                    </tbody>
+                        </thead>
 
-                </table>
-            </div>
+                        <tbody>
+                            {currentClients.length > 0 ? (
+                                currentClients.map((client) => (
+                                    <tr key={client.id}>
 
-            {/* rodapé e paginação */}
-            <div className="client-table-footer">
+                                        {/* iniciais, nome e CPF */}
+                                        <td>
+                                            <div className="client-name-cell">
+                                                <div className="client-avatar">
+                                                    {getInitials(client.name)}
+                                                </div>
 
-                <span className="client-table-showing">
-                    Mostrando {firstItem}–{lastItem} de{" "}
-                    {filteredClients.length} clientes
-                </span>
+                                                <div className="client-name-info">
+                                                    <strong>{client.name}</strong>
+                                                    <span>{client.cpf}</span>
+                                                </div>
+                                            </div>
+                                        </td>
 
-                {filteredClients.length > 0 && (
-                    <div className="client-pagination">
+                                        {/* telefone e e-mail */}
+                                        <td>
+                                            <div className="client-contact-cell">
+                                                <div>
+                                                    <Phone size={15} />
+                                                    <span>{client.phone}</span>
+                                                </div>
 
-                        <button
-                            type="button"
-                            className="client-page-arrow"
-                            onClick={() =>
-                                setCurrentPage((page) => Math.max(1, page - 1))
-                            }
-                            disabled={currentPage === 1}
-                            aria-label="Página anterior"
-                        >
-                            <ChevronLeft size={17} />
-                        </button>
+                                                <div>
+                                                    <Mail size={15} />
+                                                    <span>{client.email}</span>
+                                                </div>
+                                            </div>
+                                        </td>
 
-                        {/* números das páginas */}
-                        {Array.from(
-                            { length: totalPages },
-                            (_, index) => index + 1
-                        ).map((page) => (
+                                        {/* quantidade de processos */}
+                                        <td>
+                                            <span className="client-process-count">
+                                                {client.processCount}{" "}
+                                                {client.processCount === 1
+                                                    ? "processo"
+                                                    : "processos"}
+                                            </span>
+                                        </td>
+
+                                        {/* situação do cliente */}
+                                        <td>
+                                            <span
+                                                className={`client-status-badge ${client.status}`}
+                                            >
+                                                <span className="client-status-dot" />
+
+                                                {client.status === "active"
+                                                    ? "Ativo"
+                                                    : "Inativo"}
+                                            </span>
+                                        </td>
+
+                                        {/* data de cadastro */}
+                                        <td>
+                                            <span className="client-register-date">
+                                                {client.registeredAt}
+                                            </span>
+                                        </td>
+
+                                        {/* ações */}
+                                        <td>
+                                            <div className="client-actions">
+                                                <button
+                                                    type="button"
+                                                    title="Visualizar cliente"
+                                                    aria-label={`Visualizar ${client.name}`}
+                                                    onClick={() => setSelectedClient(client)}
+                                                >
+                                                    <Eye size={18} />
+                                                </button>
+
+                                                <button
+                                                    type="button"
+                                                    title="Editar cliente"
+                                                    aria-label={`Editar ${client.name}`}
+                                                >
+                                                    <Pencil size={18} />
+                                                </button>
+
+                                                <button
+                                                    type="button"
+                                                    title="Excluir cliente"
+                                                    aria-label={`Excluir ${client.name}`}
+                                                >
+                                                    <Trash2 size={18} />
+                                                </button>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan={6} className="client-empty-state">
+                                        Nenhum cliente encontrado.
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+
+                    </table>
+                </div>
+
+                {/* rodapé e paginação */}
+                <div className="client-table-footer">
+
+                    <span className="client-table-showing">
+                        Mostrando {firstItem}–{lastItem} de{" "}
+                        {filteredClients.length} clientes
+                    </span>
+
+                    {filteredClients.length > 0 && (
+                        <div className="client-pagination">
+
                             <button
-                                key={page}
                                 type="button"
-                                className={`client-page-number ${
-                                    currentPage === page ? "active" : ""
-                                }`}
-                                onClick={() => setCurrentPage(page)}
-                                aria-current={
-                                    currentPage === page ? "page" : undefined
+                                className="client-page-arrow"
+                                onClick={() =>
+                                    setCurrentPage((page) => Math.max(1, page - 1))
                                 }
+                                disabled={currentPage === 1}
+                                aria-label="Página anterior"
                             >
-                                {page}
+                                <ChevronLeft size={17} />
                             </button>
-                        ))}
 
-                        <button
-                            type="button"
-                            className="client-page-arrow"
-                            onClick={() =>
-                                setCurrentPage((page) =>
-                                    Math.min(totalPages, page + 1)
-                                )
-                            }
-                            disabled={currentPage === totalPages}
-                            aria-label="Próxima página"
-                        >
-                            <ChevronRight size={17} />
-                        </button>
+                            {/* números das páginas */}
+                            {Array.from(
+                                { length: totalPages },
+                                (_, index) => index + 1
+                            ).map((page) => (
+                                <button
+                                    key={page}
+                                    type="button"
+                                    className={`client-page-number ${
+                                        currentPage === page ? "active" : ""
+                                    }`}
+                                    onClick={() => setCurrentPage(page)}
+                                    aria-current={
+                                        currentPage === page ? "page" : undefined
+                                    }
+                                >
+                                    {page}
+                                </button>
+                            ))}
 
-                    </div>
-                )}
-            </div>
+                            <button
+                                type="button"
+                                className="client-page-arrow"
+                                onClick={() =>
+                                    setCurrentPage((page) =>
+                                        Math.min(totalPages, page + 1)
+                                    )
+                                }
+                                disabled={currentPage === totalPages}
+                                aria-label="Próxima página"
+                            >
+                                <ChevronRight size={17} />
+                            </button>
 
-        </section>
+                        </div>
+                    )}
+                </div>
+
+            </section>
+
+            {/* modal com os detalhes do cliente */}
+            {selectedClient && (
+                <ClientDetailsModal
+                    client={selectedClient}
+                    onClose={() => setSelectedClient(null)}
+                />
+            )}
+            
+        </>
     );
 }

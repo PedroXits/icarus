@@ -240,7 +240,7 @@
     border-radius: 6px;
     background: transparent;
     color: #7A2D1C;
-    cursor: default;
+    cursor: pointer;
 }
 
 .client-actions button:last-child {
