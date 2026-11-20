@@ -5,6 +5,7 @@ import type { Client } from "./Client";
 import type { ClientStatusFilter } from "./ClientToolbar";
 import ClientDetailsModal from "./ClientDetailsModal";
 import EditModal from "./EditModal";
+import DeleteModal from "./DeleteModal";
 
 import "./ClientTable.css";
 
@@ -119,6 +120,9 @@ export default function ClientTable({
     // guarda o cliente selecionado para edição
     const [editingClient, setEditingClient] = useState<Client | null>(null);
 
+    // guarda o cliente selecionado para exclusão
+    const [deletingClient, setDeletingClient] = useState<Client | null>(null);
+
     // padroniza a pesquisa, removendo espaços extras, maiúsculas e acentos.
     const normalizedSearch = searchTerm
         .trim()
@@ -203,6 +207,18 @@ export default function ClientTable({
         );
 
         setEditingClient(null);
+        setCurrentPage(1);
+    }
+
+    // exclui o cliente selecionado da lista
+    function handleDeleteClient() {
+        if (!deletingClient) return;
+
+        setClients((currentClients) =>
+            currentClients.filter((client) => client.id !== deletingClient.id)
+        );
+
+        setDeletingClient(null);
         setCurrentPage(1);
     }
 
@@ -324,6 +340,7 @@ export default function ClientTable({
                                                     type="button"
                                                     title="Excluir cliente"
                                                     aria-label={`Excluir ${client.name}`}
+                                                    onClick={() => setDeletingClient(client)}
                                                 >
                                                     <Trash2 size={18} />
                                                 </button>
@@ -421,6 +438,15 @@ export default function ClientTable({
                     client={editingClient}
                     onClose={() => setEditingClient(null)}
                     onSave={handleSaveClient}
+                />
+            )}
+
+            {/* modal para confirmar a exclusão do cliente */}
+            {deletingClient && (
+                <DeleteModal
+                    client={deletingClient}
+                    onClose={() => setDeletingClient(null)}
+                    onConfirm={handleDeleteClient}
                 />
             )}
             
