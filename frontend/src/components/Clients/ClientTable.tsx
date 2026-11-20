@@ -1,4 +1,5 @@
 import { Eye, Pencil, Trash2 } from "lucide-react";
+import type { ClientStatusFilter } from "./ClientToolbar";
 
 import "./ClientTable.css";
 
@@ -81,9 +82,13 @@ const mockClients: Client[] = [
 // propriedades recebidas da página de clientes
 interface ClientTableProps {
     searchTerm: string;
+    statusFilter: ClientStatusFilter;
 }
 
-export default function ClientTable({ searchTerm }: ClientTableProps) {
+export default function ClientTable({
+    searchTerm,
+    statusFilter,
+}: ClientTableProps) {
 
     // padroniza a pesquisa, removendo espaços extras, maiúsculas e acentos.
     const normalizedSearch = searchTerm
@@ -95,10 +100,9 @@ export default function ClientTable({ searchTerm }: ClientTableProps) {
     // permite pesquisar CPF e telefone mesmo sem pontuação.
     const searchNumbers = searchTerm.replace(/\D/g, "");
 
-    // filtra os clientes pela pesquisa.
+    // filtra os clientes pela pesquisa e pela situação.
     const filteredClients = mockClients.filter((client) => {
-
-        // padroniza o nome do cliente para facilitar a comparação com a pesquisa.
+        
         const normalizedName = client.name
             .toLowerCase()
             .normalize("NFD")
@@ -115,11 +119,18 @@ export default function ClientTable({ searchTerm }: ClientTableProps) {
                 client.phone.replace(/\D/g, "").includes(searchNumbers)
             );
 
-        return (
+        // verifica se o cliente corresponde ao texto pesquisado.
+        const matchesSearch =
             normalizedSearch.length === 0 ||
             matchesNameOrEmail ||
-            matchesCpfOrPhone
-        );
+            matchesCpfOrPhone;
+
+        // verifica se o cliente corresponde ao filtro de situação selecionado.
+        const matchesStatus =
+            statusFilter === "all" ||
+            client.status === statusFilter;
+
+        return matchesSearch && matchesStatus;
     });
 
     return (
