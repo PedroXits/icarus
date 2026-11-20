@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Eye, Pencil, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
+import { Eye, Pencil, Trash2, ChevronLeft, ChevronRight, Phone, Mail } from "lucide-react";
 import type { ClientStatusFilter } from "./ClientToolbar";
 
 import "./ClientTable.css";
@@ -88,6 +88,17 @@ interface ClientTableProps {
 
 // quantidade de clientes exibidos por página
 const ITEMS_PER_PAGE = 5;
+
+// gera iniciais do cliente
+function getInitials(name: string) {
+    return name
+        .split(" ")
+        .filter(Boolean)
+        .slice(0, 2)
+        .map((part) => part[0])
+        .join("")
+        .toUpperCase();
+}
 
 export default function ClientTable({
     searchTerm,
@@ -196,33 +207,52 @@ export default function ClientTable({
                             currentClients.map((client) => (
                                 <tr key={client.id}>
 
-                                    {/* nome e CPF */}
+                                    {/* iniciais, nome e CPF */}
                                     <td>
                                         <div className="client-name-cell">
-                                            <strong>{client.name}</strong>
-                                            <span>{client.cpf}</span>
+                                            <div className="client-avatar">
+                                                {getInitials(client.name)}
+                                            </div>
+
+                                            <div className="client-name-info">
+                                                <strong>{client.name}</strong>
+                                                <span>{client.cpf}</span>
+                                            </div>
                                         </div>
                                     </td>
 
                                     {/* telefone e e-mail */}
                                     <td>
                                         <div className="client-contact-cell">
-                                            <span>{client.phone}</span>
-                                            <span>{client.email}</span>
+                                            <div>
+                                                <Phone size={15} />
+                                                <span>{client.phone}</span>
+                                            </div>
+
+                                            <div>
+                                                <Mail size={15} />
+                                                <span>{client.email}</span>
+                                            </div>
                                         </div>
                                     </td>
 
                                     {/* quantidade de processos */}
                                     <td>
-                                        {client.processCount}{" "}
-                                        {client.processCount === 1
-                                            ? "processo"
-                                            : "processos"}
+                                        <span className="client-process-count">
+                                            {client.processCount}{" "}
+                                            {client.processCount === 1
+                                                ? "processo"
+                                                : "processos"}
+                                        </span>
                                     </td>
 
                                     {/* situação do cliente */}
                                     <td>
-                                        <span className={`client-status-badge ${client.status}`}>
+                                        <span
+                                            className={`client-status-badge ${client.status}`}
+                                        >
+                                            <span className="client-status-dot" />
+
                                             {client.status === "active"
                                                 ? "Ativo"
                                                 : "Inativo"}
@@ -230,7 +260,11 @@ export default function ClientTable({
                                     </td>
 
                                     {/* data de cadastro */}
-                                    <td>{client.registeredAt}</td>
+                                    <td>
+                                        <span className="client-register-date">
+                                            {client.registeredAt}
+                                        </span>
+                                    </td>
 
                                     {/* ações */}
                                     <td>
@@ -238,22 +272,25 @@ export default function ClientTable({
                                             <button
                                                 type="button"
                                                 title="Visualizar cliente"
+                                                aria-label={`Visualizar ${client.name}`}
                                             >
-                                                <Eye size={17} />
+                                                <Eye size={18} />
                                             </button>
 
                                             <button
                                                 type="button"
                                                 title="Editar cliente"
+                                                aria-label={`Editar ${client.name}`}
                                             >
-                                                <Pencil size={17} />
+                                                <Pencil size={18} />
                                             </button>
 
                                             <button
                                                 type="button"
                                                 title="Excluir cliente"
+                                                aria-label={`Excluir ${client.name}`}
                                             >
-                                                <Trash2 size={17} />
+                                                <Trash2 size={18} />
                                             </button>
                                         </div>
                                     </td>

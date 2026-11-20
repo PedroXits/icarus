@@ -94,34 +94,92 @@
     padding-left: 16px;
 }
 
-/* nome e CPF */
-.client-name-cell {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+.client-table tbody tr {
+    transition: background-color 0.2s ease;
 }
 
-.client-name-cell strong {
+.client-table tbody tr:hover {
+    background-color: rgba(244, 232, 218, 0.35);
+}
+
+.client-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* nome, avatar e CPF */
+.client-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-width: 220px;
+}
+
+/* avatar com iniciais */
+.client-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    background-color: #F0E3D5;
     color: #3D0106;
-    font-size: 13px;
+    font-family: "Besley", serif;
+    font-size: 14px;
     font-weight: 600;
 }
 
-.client-name-cell span {
+/* informações do cliente */
+.client-name-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.client-name-info strong {
+    color: #3D0106;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.client-name-info span {
     color: #948780;
     font-size: 10px;
 }
 
-/* telefone e e-mail */
+/* contato */
 .client-contact-cell {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    min-width: 220px;
+}
+
+.client-contact-cell div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.client-contact-cell svg {
+    flex-shrink: 0;
+    color: #965B1B;
 }
 
 .client-contact-cell span {
     color: #5F514B;
     font-size: 11px;
+    white-space: nowrap;
+}
+
+/* processos */
+.client-process-count {
+    color: #5F514B;
+    font-size: 12px;
+    white-space: nowrap;
 }
 
 /* situação ativo ou inativo */
@@ -129,8 +187,9 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 66px;
-    padding: 6px 11px;
+    gap: 7px;
+    min-width: 76px;
+    padding: 7px 11px;
     border-radius: 20px;
     font-size: 11px;
     font-weight: 600;
@@ -144,6 +203,22 @@
 .client-status-badge.inactive {
     background-color: #F6E6E3;
     color: #A4433C;
+}
+
+/* bolinha ativo ou inativo */
+.client-status-dot {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: currentColor;
+}
+
+/* data de cadastro */
+.client-register-date {
+    color: #5F514B;
+    font-size: 11px;
+    white-space: nowrap;
 }
 
 /* ações */
@@ -172,7 +247,7 @@
     color: #A4433C;
 }
 
-/* mensagem quando a pesquisa não encontra resultados */
+/* mensagem quando não encontra resultados */
 .client-empty-state {
     height: 110px;
     color: #8C817B !important;
