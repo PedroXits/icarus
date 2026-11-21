@@ -324,7 +324,7 @@ export default function ClientTable({
                                                     aria-label={`Visualizar ${client.name}`}
                                                     onClick={() => setSelectedClient(client)}
                                                 >
-                                                    <Eye size={18} />
+                                                    <Eye size={19} />
                                                 </button>
 
                                                 <button
@@ -333,7 +333,7 @@ export default function ClientTable({
                                                     aria-label={`Editar ${client.name}`}
                                                     onClick={() => setEditingClient(client)}
                                                 >
-                                                    <Pencil size={18} />
+                                                    <Pencil size={19} />
                                                 </button>
 
                                                 <button
@@ -342,7 +342,7 @@ export default function ClientTable({
                                                     aria-label={`Excluir ${client.name}`}
                                                     onClick={() => setDeletingClient(client)}
                                                 >
-                                                    <Trash2 size={18} />
+                                                    <Trash2 size={19} />
                                                 </button>
                                             </div>
                                         </td>

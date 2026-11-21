@@ -34,7 +34,7 @@
 .client-delete-header > span {
     color: #965B1B;
     font-family: "Amethysta", serif;
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 1px;
 }
 
@@ -71,8 +71,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 58px;
-    height: 58px;
+    width: 60px;
+    height: 60px;
     margin-bottom: 15px;
     border-radius: 50%;
     background-color: #F6E6E3;
@@ -83,7 +83,7 @@
     margin: 0;
     color: #3D0106;
     font-family: "Besley", serif;
-    font-size: 23px;
+    font-size: 23.5px;
     font-weight: 600;
 }
 
@@ -92,7 +92,7 @@
     margin: 10px 0 0;
     color: #756B68;
     font-family: "Amethysta", serif;
-    font-size: 13.5px;
+    font-size: 14px;
     line-height: 1.7;
 }
 
@@ -112,14 +112,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 43px;
-    height: 43px;
+    width: 48px;
+    height: 48px;
     flex-shrink: 0;
     border-radius: 50%;
     background-color: #F0E3D5;
     color: #3D0106;
     font-family: "Besley", serif;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 600;
 }
 
@@ -133,13 +133,14 @@
 .client-delete-profile strong {
     color: #3D0106;
     font-family: "Besley", serif;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .client-delete-profile span {
     color: #948780;
     font-family: "Amethysta", serif;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 /* rodapé */
@@ -162,7 +163,7 @@
     padding: 0 17px;
     border-radius: 9px;
     font-family: "Amethysta", serif;
-    font-size: 12px;
+    font-size: 14px;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }

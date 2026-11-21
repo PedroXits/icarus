@@ -37,7 +37,7 @@
 .client-edit-header span {
     color: #965B1B;
     font-family: "Amethysta", serif;
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 1px;
 }
 
@@ -45,7 +45,7 @@
     margin: 6px 0 0;
     color: #3D0106;
     font-family: "Besley", serif;
-    font-size: 21px;
+    font-size: 22px;
     font-weight: 600;
 }
 
@@ -85,14 +85,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 46px;
-    height: 46px;
+    width: 50px;
+    height: 50px;
     flex-shrink: 0;
     border-radius: 50%;
     background-color: #F0E3D5;
     color: #3D0106;
     font-family: "Besley", serif;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
 }
 
@@ -107,13 +107,14 @@
 .client-edit-profile strong {
     color: #3D0106;
     font-family: "Besley", serif;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .client-edit-profile span {
     color: #948780;
     font-family: "Amethysta", serif;
-    font-size: 11px;
+    font-size: 13px;
 }
 
 /* seções do form */
@@ -125,7 +126,7 @@
     margin: 0 0 12px;
     color: #3D0106;
     font-family: "Besley", serif;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
 }
 
@@ -147,7 +148,7 @@
 .client-edit-field label {
     color: #756B68;
     font-family: "Amethysta", serif;
-    font-size: 11px;
+    font-size: 13px;
 }
 
 .client-edit-field input,
@@ -161,7 +162,7 @@
     background-color: rgba(255, 252, 247, 0.75);
     color: #3D0106;
     font-family: "Amethysta", serif;
-    font-size: 12px;
+    font-size: 14px;
     transition: border-color 0.2s ease;
 }
 
@@ -220,7 +221,7 @@
     background-color: rgba(255, 252, 247, 0.75);
     color: #5F514B;
     font-family: "Amethysta", serif;
-    font-size: 12px;
+    font-size: 13px;
     cursor: pointer;
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
@@ -262,7 +263,7 @@
 .client-edit-readonly-grid span {
     color: #756B68;
     font-family: "Amethysta", serif;
-    font-size: 11px;
+    font-size: 13px;
 }
 
 .client-edit-readonly-grid strong {
@@ -286,7 +287,7 @@
     padding: 0 19px;
     border-radius: 9px;
     font-family: "Amethysta", serif;
-    font-size: 12px;
+    font-size: 14px;
     cursor: pointer;
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }

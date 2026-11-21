@@ -26,7 +26,7 @@
     margin: 0;
     color: #3D0106;
     font-family: "Besley", serif;
-    font-size: 19px;
+    font-size: 21px;
     font-weight: 600;
 }
 
@@ -37,7 +37,7 @@
     background-color: #F4E8DA;
     color: #7A410E;
     font-family: "Amethysta", serif;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 /* área da tabela */
@@ -46,7 +46,7 @@
     min-height: 0;
     width: 100%;
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: auto;
 }
 
 /* estrutura da tabela */
@@ -65,7 +65,7 @@
     background-color: #F4E8DA;
     color: #3D0106;
     font-family: "Besley", serif;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     white-space: nowrap;
 }
@@ -82,7 +82,7 @@
 
 /* espaço entre cada cliente */
 .client-table tbody td {
-    padding: 13px 12px;
+    padding: 12px 12px;
     border-bottom: 1px solid #EEE5DC;
     color: #241512;
     font-family: "Amethysta", serif;
@@ -120,13 +120,13 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    width: 43px;
-    height: 43px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     background-color: #F0E3D5;
     color: #3D0106;
     font-family: "Besley", serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
 }
 
@@ -140,14 +140,14 @@
 
 .client-name-info strong {
     color: #3D0106;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     white-space: nowrap;
 }
 
 .client-name-info span {
     color: #948780;
-    font-size: 10px;
+    font-size: 13px;
 }
 
 /* contato */
@@ -171,14 +171,14 @@
 
 .client-contact-cell span {
     color: #5F514B;
-    font-size: 11px;
+    font-size: 13px;
     white-space: nowrap;
 }
 
 /* processos */
 .client-process-count {
     color: #5F514B;
-    font-size: 12px;
+    font-size: 13px;
     white-space: nowrap;
 }
 
@@ -191,7 +191,7 @@
     min-width: 76px;
     padding: 7px 11px;
     border-radius: 20px;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 600;
 }
 
@@ -217,7 +217,7 @@
 /* data de cadastro */
 .client-register-date {
     color: #5F514B;
-    font-size: 11px;
+    font-size: 13px;
     white-space: nowrap;
 }
 
@@ -252,7 +252,7 @@
     height: 110px;
     color: #8C817B !important;
     text-align: center;
-    font-size: 13px !important;
+    font-size: 16px !important;
 }
 
 /* rodapé da tabela */
@@ -271,7 +271,7 @@
 .client-table-showing {
     color: #756B68;
     font-family: "Amethysta", serif;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 /* paginação */
@@ -295,7 +295,7 @@
     background-color: rgba(255, 252, 247, 0.75);
     color: #3D0106;
     font-family: "Amethysta", serif;
-    font-size: 12px;
+    font-size: 13px;
     cursor: pointer;
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
