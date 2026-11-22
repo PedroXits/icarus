@@ -1,32 +1,80 @@
 import { Users, UserPlus, UserCheck, UserX } from "lucide-react";
+import type { Client } from "./Client";
 
 import "./SummaryCards.css";
 
-// mock indicadores da tela clientes
-const summaryItems = [
-    {
-        title: "Total de clientes",
-        value: "133",
-        icon: Users,
-    },
-    {
-        title: "Novos no mês",
-        value: "6",
-        icon: UserPlus,
-    },
-    {
-        title: "Clientes ativos",
-        value: "125",
-        icon: UserCheck,
-    },
-    {
-        title: "Clientes inativos",
-        value: "8",
-        icon: UserX,
-    }
-];
+interface SummaryCardsProps {
+    clients: Client[];
+}
 
-export default function SummaryCards() {
+// verifica se a data de cadastro pertence ao mês e ano atuais
+function isRegisteredThisMonth(date: string, today: Date) {
+    const [day, month, year] = date.split("/").map(Number);
+
+    if (!day || !month || !year) {
+        return false;
+    }
+
+    const registeredDate = new Date(year, month - 1, day);
+
+    // verifica se a data é válida
+    const isValidDate =
+        registeredDate.getDate() === day &&
+        registeredDate.getMonth() === month - 1 &&
+        registeredDate.getFullYear() === year;
+
+    if (!isValidDate) {
+        return false;
+    }
+
+    return (
+        registeredDate.getMonth() === today.getMonth() &&
+        registeredDate.getFullYear() === today.getFullYear()
+    );
+}
+
+export default function SummaryCards({ clients }: SummaryCardsProps) {
+
+    // quantidade de clientes ativos e inativos
+    const activeClients = clients.filter(
+        (client) => client.status === "active"
+    ).length;
+
+    const inactiveClients = clients.filter(
+        (client) => client.status === "inactive"
+    ).length;
+
+     // quantidade de clientes cadastrados nesse mês
+    const today = new Date();
+
+    const newClientsThisMonth = clients.filter(
+        (client) => isRegisteredThisMonth(client.registeredAt, today)
+    ).length;
+
+    // indicadores calculados a partir da lista de clientes
+    const summaryItems = [
+        {
+            title: "Total de clientes",
+            value: clients.length,
+            icon: Users,
+        },
+        {
+            title: "Novos no mês",
+            value: newClientsThisMonth,
+            icon: UserPlus,
+        },
+        {
+            title: "Clientes ativos",
+            value: activeClients,
+            icon: UserCheck,
+        },
+        {
+            title: "Clientes inativos",
+            value: inactiveClients,
+            icon: UserX,
+        }
+    ];
+    
     return (
         <section className="client-summary-cards">
 

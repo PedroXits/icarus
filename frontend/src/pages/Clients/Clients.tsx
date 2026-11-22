@@ -5,10 +5,14 @@ import Header from "../../components/Header";
 import SummaryCards from "../../components/Clients/SummaryCards";
 import ClientToolbar, { type ClientStatusFilter, } from "../../components/Clients/ClientToolbar";
 import ClientTable from "../../components/Clients/ClientTable";
+import type { Client } from "../../components/Clients/Client";
+import { mockClients } from "../../components/Clients/mockClients";
 
 import "./Clients.css";
 
 export default function Clients() {
+
+    const [clients, setClients] = useState<Client[]>(mockClients);
 
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -35,7 +39,7 @@ export default function Clients() {
                 <section className="clients-content">
 
                     {/* cards de resumo dos clientes */}
-                    <SummaryCards />
+                    <SummaryCards clients={clients} />
 
                     {/* pesquisa, filtro e cadastro de clientes */}
                     <ClientToolbar
@@ -48,6 +52,8 @@ export default function Clients() {
 
                     {/* tabela de clientes */}
                     <ClientTable 
+                        clients={clients}
+                        setClients={setClients}
                         searchTerm={searchTerm}
                         statusFilter={statusFilter}
                         isNewClientModalOpen={isNewClientModalOpen}
