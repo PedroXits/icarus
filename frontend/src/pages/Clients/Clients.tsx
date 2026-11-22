@@ -15,6 +15,8 @@ export default function Clients() {
     const [statusFilter, setStatusFilter] =
         useState<ClientStatusFilter>("all");
 
+    const [isNewClientModalOpen, setIsNewClientModalOpen] = useState(false);
+
     return (
         <div className="clients-layout">
 
@@ -41,12 +43,15 @@ export default function Clients() {
                         onSearchChange={setSearchTerm}
                         statusFilter={statusFilter}
                         onStatusFilterChange={setStatusFilter}
+                        onNewClientClick={() => setIsNewClientModalOpen(true)}
                     />
 
                     {/* tabela de clientes */}
                     <ClientTable 
                         searchTerm={searchTerm}
                         statusFilter={statusFilter}
+                        isNewClientModalOpen={isNewClientModalOpen}
+                        onCloseNewClientModal={() => setIsNewClientModalOpen(false)}
                     />
                 </section>
             </main>

@@ -6,6 +6,7 @@ import type { ClientStatusFilter } from "./ClientToolbar";
 import ClientDetailsModal from "./ClientDetailsModal";
 import EditModal from "./EditModal";
 import DeleteModal from "./DeleteModal";
+import NewClientModal from "./NewClientModal";
 
 import "./ClientTable.css";
 
@@ -89,6 +90,8 @@ const mockClients: Client[] = [
 interface ClientTableProps {
     searchTerm: string;
     statusFilter: ClientStatusFilter;
+    isNewClientModalOpen: boolean;
+    onCloseNewClientModal: () => void;
 }
 
 // quantidade de clientes exibidos por página
@@ -108,6 +111,8 @@ function getInitials(name: string) {
 export default function ClientTable({
     searchTerm,
     statusFilter,
+    isNewClientModalOpen,
+    onCloseNewClientModal,
 }: ClientTableProps) {
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -189,6 +194,29 @@ export default function ClientTable({
         currentPage * ITEMS_PER_PAGE,
         filteredClients.length
     );
+
+    // cadastra um novo cliente na lista
+    function handleCreateClient(newClient: Omit<Client, "id">) {
+
+        // gera um ID para o novo cliente
+        setClients((currentClients) => {
+            const nextId = currentClients.reduce(
+                (highestId, client) => Math.max(highestId, client.id),
+                0
+            ) + 1;
+
+            return [
+                {
+                    ...newClient,
+                    id: nextId,
+                },
+                ...currentClients,
+            ];
+        });
+
+        onCloseNewClientModal();
+        setCurrentPage(1);
+    }
 
     // salva as alterações realizadas no cadastro do cliente
     function handleSaveClient(updatedClient: Client) {
@@ -423,6 +451,14 @@ export default function ClientTable({
                 </div>
 
             </section>
+
+            {/* modal para cadastrar um novo cliente */}
+            {isNewClientModalOpen && (
+                <NewClientModal
+                    onClose={onCloseNewClientModal}
+                    onSave={handleCreateClient}
+                />
+            )}
 
             {/* modal com os detalhes do cliente */}
             {selectedClient && (

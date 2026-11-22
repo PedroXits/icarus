@@ -20,6 +20,7 @@ interface ClientToolbarProps {
     onSearchChange: (value: string) => void;
     statusFilter: ClientStatusFilter;
     onStatusFilterChange: (value: ClientStatusFilter) => void;
+    onNewClientClick: () => void;
 }
 
 export default function ClientToolbar ({
@@ -27,6 +28,7 @@ export default function ClientToolbar ({
     onSearchChange,
     statusFilter,
     onStatusFilterChange,
+    onNewClientClick,
 }: ClientToolbarProps) {
 
     const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -147,6 +149,7 @@ export default function ClientToolbar ({
             <button
                 className="client-new-button"
                 type="button"
+                onClick={onNewClientClick}
             >
                 <Plus size={20} strokeWidth={2} />
                 <span>Novo cliente</span>
