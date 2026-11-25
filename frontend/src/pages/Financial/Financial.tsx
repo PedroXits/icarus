@@ -4,6 +4,7 @@ import { CalendarDays, ChevronDown, Check } from "lucide-react";
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import SummaryCards from "../../components/Financial/SummaryCards";
+import FlowChart from "../../components/Financial/FlowChart";
 
 import "./Financial.css";
 
@@ -161,6 +162,11 @@ export default function Financial() {
 
                     {/* cards de resumo financeiro */}
                     <SummaryCards />
+
+                    {/* gráfico de fluxo financeiro */}
+                    <div className="financial-charts">
+                        <FlowChart />
+                    </div>
 
                 </section>
             </main>

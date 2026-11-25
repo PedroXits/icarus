@@ -134,3 +134,12 @@
 .financial-month-option.selected svg {
     color: #965B1B;
 }
+
+/* organização dos gráficos */
+.financial-charts {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    flex-shrink: 0;
+    width: 100%;
+    min-height: 290px;
+}
