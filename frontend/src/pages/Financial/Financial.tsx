@@ -1,5 +1,6 @@
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
+import SummaryCards from "../../components/Financial/SummaryCards";
 
 import "./Financial.css";
 
@@ -21,6 +22,9 @@ export default function Financial() {
                 />
 
                 <section className="financial-content">
+
+                    {/* cards de resumo financeiro */}
+                    <SummaryCards />
 
                 </section>
             </main>
