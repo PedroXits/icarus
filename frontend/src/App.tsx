@@ -3,24 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Clients from "./pages/Clients/Clients";
-import Sidebar from "./components/Sidebar";
-import Header from "./components/Header";
-
-// página temporária para o financeiro
-function ModulePlaceholder({title} : {title: string}) {
-  return (
-    <div className="dashboard-layout">
-      <Sidebar />
-
-      <main className="dashboard-main">
-        <Header
-          title={title}
-          subtitle="área desenvolvida em breve..."
-        />
-      </main>
-    </div>
-  );
-}
+import Financial from "./pages/Financial/Financial";
 
 function App() {
   return (
@@ -29,7 +12,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/clients" element={<Clients />} />
-          <Route path="/financial" element={<ModulePlaceholder title="Financeiro" />} />
+          <Route path="/financial" element={<Financial />} />
 
           {/* endereço não encontrado */}
           <Route path="*" element={<Navigate to="/" replace />} />
