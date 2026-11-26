@@ -4,6 +4,7 @@ import br.com.icarus.icarus.dto.request.ClienteRequest;
 import br.com.icarus.icarus.dto.response.ClienteResponse;
 import br.com.icarus.icarus.entity.Cliente;
 import br.com.icarus.icarus.repository.ClienteRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
+@Service
 public class ClienteService {
 
     private final ClienteRepository clienteRepository;
